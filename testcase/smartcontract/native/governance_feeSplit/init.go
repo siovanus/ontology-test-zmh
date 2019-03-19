@@ -96,6 +96,7 @@ func TestGovernanceMethods() {
 	testframework.TFramework.RegTestCase("TransferPenalty", TransferPenalty)
 	testframework.TFramework.RegTestCase("SetPromisePos", SetPromisePos)
 	testframework.TFramework.RegTestCase("GetVbftConfig", GetVbftConfig)
+	testframework.TFramework.RegTestCase("GetPreConfig", GetPreConfig)
 	testframework.TFramework.RegTestCase("GetGlobalParam", GetGlobalParam)
 	testframework.TFramework.RegTestCase("GetGlobalParam2", GetGlobalParam2)
 	testframework.TFramework.RegTestCase("GetSplitCurve", GetSplitCurve)

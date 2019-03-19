@@ -865,6 +865,20 @@ func getVbftConfig(ctx *testframework.TestFrameworkContext) (*governance.Configu
 	return config, nil
 }
 
+func getPreConfig(ctx *testframework.TestFrameworkContext) (*governance.PreConfig, error) {
+	contractAddress := utils.GovernanceContractAddress
+	preConfig := new(governance.PreConfig)
+	key := []byte(governance.PRE_CONFIG)
+	value, err := ctx.Ont.GetStorage(contractAddress.ToHexString(), key)
+	if err != nil {
+		return nil, errors.NewDetailErr(err, errors.ErrNoCode, "getStorage error")
+	}
+	if err := preConfig.Deserialize(bytes.NewBuffer(value)); err != nil {
+		return nil, errors.NewDetailErr(err, errors.ErrNoCode, "deserialize, deserialize preConfig error!")
+	}
+	return preConfig, nil
+}
+
 func getGlobalParam(ctx *testframework.TestFrameworkContext) (*governance.GlobalParam, error) {
 	contractAddress := utils.GovernanceContractAddress
 	globalParam := new(governance.GlobalParam)

@@ -1076,6 +1076,24 @@ func GetVbftConfig(ctx *testframework.TestFrameworkContext) bool {
 	return true
 }
 
+func GetPreConfig(ctx *testframework.TestFrameworkContext) bool {
+	preConfig, err := getPreConfig(ctx)
+	if err != nil {
+		ctx.LogError("getVbftConfig failed %v", err)
+		return false
+	}
+	config := preConfig.Configuration
+	fmt.Println("config.N is:", config.N)
+	fmt.Println("config.C is:", config.C)
+	fmt.Println("config.K is:", config.K)
+	fmt.Println("config.L is:", config.L)
+	fmt.Println("config.BlockMsgDelay is:", config.BlockMsgDelay)
+	fmt.Println("config.HashMsgDelay is:", config.HashMsgDelay)
+	fmt.Println("config.PeerHandshakeTimeout is:", config.PeerHandshakeTimeout)
+	fmt.Println("config.MaxBlockChangeView is:", config.MaxBlockChangeView)
+	return true
+}
+
 func GetGlobalParam(ctx *testframework.TestFrameworkContext) bool {
 	globalParam, err := getGlobalParam(ctx)
 	if err != nil {
