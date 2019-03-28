@@ -899,6 +899,7 @@ type UpdateGlobalParamParam2 struct {
 	Path                 []string
 	MinAuthorizePos      uint32
 	CandidateFeeSplitNum uint32
+	DappFee              uint32
 }
 
 func UpdateGlobalParam2(ctx *testframework.TestFrameworkContext) bool {
@@ -927,6 +928,7 @@ func UpdateGlobalParam2(ctx *testframework.TestFrameworkContext) bool {
 	globalParam2 := &governance.GlobalParam2{
 		MinAuthorizePos:      updateGlobalParamParam2.MinAuthorizePos,
 		CandidateFeeSplitNum: updateGlobalParamParam2.CandidateFeeSplitNum,
+		DappFee:              updateGlobalParamParam2.DappFee,
 	}
 	ok := updateGlobalParam2MultiSign(ctx, pubKeys, users, globalParam2)
 	if !ok {
@@ -1013,6 +1015,42 @@ func SetPromisePos(ctx *testframework.TestFrameworkContext) bool {
 		if !ok {
 			return false
 		}
+	}
+	waitForBlock(ctx)
+	return true
+}
+
+type SetGasAddressParam struct {
+	Path    []string
+	Address string
+}
+
+func SetGasAddress(ctx *testframework.TestFrameworkContext) bool {
+	data, err := ioutil.ReadFile("./params/SetGasAddress.json")
+	if err != nil {
+		ctx.LogError("ioutil.ReadFile failed %v", err)
+		return false
+	}
+	setGasAddressParam := new(SetGasAddressParam)
+	err = json.Unmarshal(data, setGasAddressParam)
+	if err != nil {
+		ctx.LogError("json.Unmarshal failed %v", err)
+		return false
+	}
+	var users []*sdk.Account
+	var pubKeys []keypair.PublicKey
+	time.Sleep(1 * time.Second)
+	for _, path := range setGasAddressParam.Path {
+		user, ok := getAccountByPassword(ctx, path)
+		if !ok {
+			return false
+		}
+		users = append(users, user)
+		pubKeys = append(pubKeys, user.PublicKey)
+	}
+	ok := setGasAddressMultiSign(ctx, pubKeys, users, setGasAddressParam.Address)
+	if !ok {
+		return false
 	}
 	waitForBlock(ctx)
 	return true
@@ -1119,6 +1157,7 @@ func GetGlobalParam2(ctx *testframework.TestFrameworkContext) bool {
 	}
 	fmt.Println("globalParam2.MinAuthorizePos is:", globalParam2.MinAuthorizePos)
 	fmt.Println("globalParam2.CandidateFeeSplitNum is:", globalParam2.CandidateFeeSplitNum)
+	fmt.Println("globalParam2.DappFee is:", globalParam2.DappFee)
 	return true
 }
 

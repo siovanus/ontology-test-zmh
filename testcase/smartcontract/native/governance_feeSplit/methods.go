@@ -543,6 +543,27 @@ func setPromisePosMultiSign(ctx *testframework.TestFrameworkContext, pubKeys []k
 	return true
 }
 
+func setGasAddressMultiSign(ctx *testframework.TestFrameworkContext, pubKeys []keypair.PublicKey, users []*sdk.Account, address string) bool {
+	addr, err := common.AddressFromBase58(address)
+	if err != nil {
+		ctx.LogError("common.AddressFromBase58 error :", err)
+		return false
+	}
+	params := &governance.GasAddress{
+		Address: addr,
+	}
+	contractAddress := utils.GovernanceContractAddress
+	method := "setGasAddress"
+	txHash, err := invokeNativeContractWithMultiSign(ctx, ctx.GetGasPrice(), ctx.GetGasLimit(), pubKeys, users, OntIDVersion,
+		contractAddress, method, []interface{}{params})
+	if err != nil {
+		ctx.LogError("invokeNativeContract error :", err)
+		return false
+	}
+	ctx.LogInfo("setGasAddressMultiSign txHash is :", txHash.ToHexString())
+	return true
+}
+
 func transferPenalty(ctx *testframework.TestFrameworkContext, user *sdk.Account, peerPubkey string, address common.Address) bool {
 	params := &governance.TransferPenaltyParam{
 		PeerPubkey: peerPubkey,

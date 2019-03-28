@@ -1,5 +1,6 @@
 {
    "Path": ["wallets/peer1/wallet.dat","wallets/peer2/wallet.dat","wallets/peer3/wallet.dat","wallets/peer4/wallet.dat","wallets/peer5/wallet.dat","wallets/peer6/wallet.dat","wallets/peer7/wallet.dat"],
    "MinAuthorizePos": 500,
-   "CandidateFeeSplitNum": 45
+   "CandidateFeeSplitNum": 45,
+   "DappFee": 0
 }
