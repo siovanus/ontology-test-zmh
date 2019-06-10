@@ -1122,3 +1122,17 @@ func getPromisePos(ctx *testframework.TestFrameworkContext, peerPubkey string) (
 	}
 	return promisePos, nil
 }
+
+func getGasAddress(ctx *testframework.TestFrameworkContext) (*governance.GasAddress, error) {
+	contractAddress := utils.GovernanceContractAddress
+	key := []byte(governance.GAS_ADDRESS)
+	value, err := ctx.Ont.GetStorage(contractAddress.ToHexString(), key)
+	if err != nil {
+		return nil, errors.NewDetailErr(err, errors.ErrNoCode, "getStorage error")
+	}
+	gasAddress := new(governance.GasAddress)
+	if err := gasAddress.Deserialization(common.NewZeroCopySource(value)); err != nil {
+		return nil, errors.NewDetailErr(err, errors.ErrNoCode, "deserialize, deserialize gasAddress error!")
+	}
+	return gasAddress, nil
+}

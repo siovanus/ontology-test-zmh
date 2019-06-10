@@ -2124,3 +2124,14 @@ func GetPromisePos(ctx *testframework.TestFrameworkContext) bool {
 
 	return true
 }
+
+func GetGasAddress(ctx *testframework.TestFrameworkContext) bool {
+	gasAddress, err := getGasAddress(ctx)
+	if err != nil {
+		ctx.LogError("getGasAddress failed %v", err)
+		return false
+	}
+	fmt.Println("gasAddress is:", gasAddress.Address.ToBase58())
+
+	return true
+}
