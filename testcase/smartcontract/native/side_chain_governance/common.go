@@ -73,51 +73,8 @@ func getAccount(ctx *testframework.TestFrameworkContext, path string) (*sdk.Acco
 	return user, true
 }
 
-func getAccount1(ctx *testframework.TestFrameworkContext) (*sdk.Account, bool) {
-	wallet, err := ctx.Ont.OpenWallet("./testcase/smartcontract/native/governance_feeSplit/wallet/wallet1.dat")
-	if err != nil {
-		ctx.LogError("open wallet error:%s", err)
-		return nil, false
-	}
-	user, err := wallet.GetDefaultAccount([]byte(common.DefConfig.Password))
-	if err != nil {
-		ctx.LogError("getDefaultAccount error:%s", err)
-		return nil, false
-	}
-	return user, true
-}
-
-func getAccount2(ctx *testframework.TestFrameworkContext) (*sdk.Account, bool) {
-	wallet, err := ctx.Ont.OpenWallet("./testcase/smartcontract/native/governance_feeSplit/wallet/wallet2.dat")
-	if err != nil {
-		ctx.LogError("open wallet error:%s", err)
-		return nil, false
-	}
-	user, err := wallet.GetDefaultAccount([]byte(common.DefConfig.Password))
-	if err != nil {
-		ctx.LogError("getDefaultAccount error:%s", err)
-		return nil, false
-	}
-	return user, true
-}
-
-func getAccount3(ctx *testframework.TestFrameworkContext) (*sdk.Account, bool) {
-	wallet, err := ctx.Ont.OpenWallet("./testcase/smartcontract/native/governance_feeSplit/wallet/wallet3.dat")
-	if err != nil {
-		ctx.LogError("open wallet error:%s", err)
-		return nil, false
-	}
-	user, err := wallet.GetDefaultAccount([]byte(common.DefConfig.Password))
-	if err != nil {
-		ctx.LogError("getDefaultAccount error:%s", err)
-		return nil, false
-	}
-	return user, true
-}
-
 func invokeNativeContractWithMultiSign(
 	ctx *testframework.TestFrameworkContext,
-	chainID uint64,
 	gasPrice,
 	gasLimit uint64,
 	pubKeys []keypair.PublicKey,
@@ -127,7 +84,7 @@ func invokeNativeContractWithMultiSign(
 	method string,
 	params []interface{},
 ) (scommon.Uint256, error) {
-	tx, err := ctx.Ont.Native.NewNativeInvokeTransaction(chainID, gasPrice, gasLimit, cversion, contractAddress, method, params)
+	tx, err := ctx.Ont.Native.NewNativeInvokeTransaction(gasPrice, gasLimit, cversion, contractAddress, method, params)
 	if err != nil {
 		return scommon.UINT256_EMPTY, err
 	}
