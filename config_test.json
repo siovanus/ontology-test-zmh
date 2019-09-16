@@ -1,5 +1,4 @@
 {
-  "ChainID": 0,
   "JsonRpcAddress":"http://localhost:20336",
   "WalletFile":"./wallet.dat",
   "Password":"passwordtest",

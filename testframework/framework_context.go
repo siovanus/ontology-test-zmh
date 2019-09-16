@@ -72,10 +72,6 @@ func (this *TestFrameworkContext) FailNow() {
 	}
 }
 
-func (this *TestFrameworkContext) GetChainID() uint64 {
-	return common.DefConfig.ChainID
-}
-
 func (this *TestFrameworkContext) GetGasPrice() uint64 {
 	return common.DefConfig.GasPrice
 }

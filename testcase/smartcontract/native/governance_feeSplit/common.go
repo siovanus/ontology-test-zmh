@@ -121,7 +121,6 @@ func getAccount3(ctx *testframework.TestFrameworkContext) (*sdk.Account, bool) {
 
 func invokeNativeContractWithMultiSign(
 	ctx *testframework.TestFrameworkContext,
-	chainID uint64,
 	gasPrice,
 	gasLimit uint64,
 	pubKeys []keypair.PublicKey,
@@ -131,7 +130,7 @@ func invokeNativeContractWithMultiSign(
 	method string,
 	params []interface{},
 ) (scommon.Uint256, error) {
-	tx, err := ctx.Ont.Native.NewNativeInvokeTransaction(chainID, gasPrice, gasLimit, cversion, contractAddress, method, params)
+	tx, err := ctx.Ont.Native.NewNativeInvokeTransaction(gasPrice, gasLimit, cversion, contractAddress, method, params)
 	if err != nil {
 		return scommon.UINT256_EMPTY, err
 	}

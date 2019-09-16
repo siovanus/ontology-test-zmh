@@ -1,4 +1,0 @@
-{
-  "Path": ["wallets/peer1/wallet.dat","wallets/peer2/wallet.dat","wallets/peer3/wallet.dat","wallets/peer4/wallet.dat","wallets/peer5/wallet.dat","wallets/peer6/wallet.dat","wallets/peer7/wallet.dat"],
-  "ChainRpc": "http://138.91.6.125:20336"
-}

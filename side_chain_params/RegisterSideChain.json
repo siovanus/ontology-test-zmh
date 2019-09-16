@@ -1,6 +1,0 @@
-{
-  "Path": "wallets/peer1/wallet.dat",
-  "Chainid": 0,
-  "Name":"btc",
-  "BlocksToWait": 7
-}

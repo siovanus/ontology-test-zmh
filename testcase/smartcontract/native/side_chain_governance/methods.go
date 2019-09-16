@@ -17,7 +17,7 @@ func syncGenesisHeader(ctx *testframework.TestFrameworkContext, pubKeys []keypai
 	}
 	contractAddress := utils.HeaderSyncContractAddress
 	method := "syncGenesisHeader"
-	txHash, err := invokeNativeContractWithMultiSign(ctx, ctx.GetChainID(), ctx.GetGasPrice(), ctx.GetGasLimit(), pubKeys,
+	txHash, err := invokeNativeContractWithMultiSign(ctx, ctx.GetGasPrice(), ctx.GetGasLimit(), pubKeys,
 		users, OntIDVersion, contractAddress, method, []interface{}{params})
 	if err != nil {
 		ctx.LogError("invokeNativeContractWithMultiSign error :", err)
