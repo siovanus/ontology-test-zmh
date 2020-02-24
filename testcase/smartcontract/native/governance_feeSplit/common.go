@@ -185,12 +185,12 @@ func setupTest(ctx *testframework.TestFrameworkContext, user *sdk.Account) bool 
 		return false
 	}
 
-	_, err = ctx.Ont.Native.Ont.Transfer(ctx.GetGasPrice(), ctx.GetGasLimit(), user, user1.Address, INIT_ONT)
+	_, err = ctx.Ont.Native.Ont.Transfer(ctx.GetGasPrice(), ctx.GetGasLimit(), user, user, user1.Address, INIT_ONT)
 	if err != nil {
 		ctx.LogError("Rpc.Transfer error:%s", err)
 		return false
 	}
-	_, err = ctx.Ont.Native.Ont.Transfer(ctx.GetGasPrice(), ctx.GetGasLimit(), user, user2.Address, INIT_ONT)
+	_, err = ctx.Ont.Native.Ont.Transfer(ctx.GetGasPrice(), ctx.GetGasLimit(), user, user, user2.Address, INIT_ONT)
 	if err != nil {
 		ctx.LogError("Rpc.Transfer error:%s", err)
 		return false
