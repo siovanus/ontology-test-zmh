@@ -16,11 +16,10 @@
  * along with The ontology.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package governance_feeSplit
+package side_chain_governance
 
 import (
 	"encoding/hex"
-	"encoding/json"
 	"fmt"
 	"time"
 
@@ -29,9 +28,6 @@ import (
 	"github.com/ontio/ontology-tool/testframework"
 	scommon "github.com/ontio/ontology/common"
 	"github.com/ontio/ontology/common/password"
-	"github.com/ontio/ontology/consensus/vbft"
-	vconfig "github.com/ontio/ontology/consensus/vbft/config"
-	"github.com/ontio/ontology/core/types"
 )
 
 func getAccountByPassword(ctx *testframework.TestFrameworkContext, path string) (*sdk.Account, bool) {
@@ -94,20 +90,31 @@ func ConcatKey(args ...[]byte) []byte {
 	return temp
 }
 
-func initVbftBlock(block *types.Block) (*vbft.Block, error) {
-	if block == nil {
-		return nil, fmt.Errorf("nil block in initVbftBlock")
+func getEvent(ctx *testframework.TestFrameworkContext, txHash scommon.Uint256) bool {
+	_, err := ctx.Ont.WaitForGenerateBlock(30*time.Second, 1)
+	if err != nil {
+		ctx.LogError("WaitForGenerateBlock error: %s", err)
+		return false
+	}
+	events, err := ctx.Ont.GetSmartContractEvent(txHash.ToHexString())
+	if err != nil {
+		ctx.LogError("GetSmartContractEvent error: %s", err)
+		return false
 	}
 
-	blkInfo := &vconfig.VbftBlockInfo{}
-	if err := json.Unmarshal(block.Header.ConsensusPayload, blkInfo); err != nil {
-		return nil, fmt.Errorf("unmarshal blockInfo: %s", err)
+	if events.State == 0 {
+		ctx.LogWarn("ontio contract invoke failed, state:0")
+		return false
 	}
 
-	return &vbft.Block{
-		Block: block,
-		Info:  blkInfo,
-	}, nil
+	if len(events.Notify) > 0 {
+		states := events.Notify[0].States
+		ctx.LogInfo("result is : %+v", states)
+		return true
+	} else {
+		return false
+	}
+
 }
 
 func getAddressByHexString(hexString string) (scommon.Address, error) {

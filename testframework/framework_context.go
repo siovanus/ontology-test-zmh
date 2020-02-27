@@ -27,15 +27,13 @@ import (
 //TestFrameworkContext is the context for test case
 type TestFrameworkContext struct {
 	Ont       *sdk.OntologySdk //sdk to ontology
-	Wallet    *sdk.Wallet      // wallet instance
 	failNowCh chan interface{}
 }
 
 //NewTestFrameworkContext return a TestFrameworkContext instance
-func NewTestFrameworkContext(ont *sdk.OntologySdk, wal *sdk.Wallet, failNowCh chan interface{}) *TestFrameworkContext {
+func NewTestFrameworkContext(ont *sdk.OntologySdk, failNowCh chan interface{}) *TestFrameworkContext {
 	return &TestFrameworkContext{
 		Ont:       ont,
-		Wallet:    wal,
 		failNowCh: failNowCh,
 	}
 }
@@ -53,10 +51,6 @@ func (this *TestFrameworkContext) LogError(arg0 interface{}, args ...interface{}
 //LogWarn log warning info in test case
 func (this *TestFrameworkContext) LogWarn(arg0 interface{}, args ...interface{}) {
 	log4.Warn(arg0, args...)
-}
-
-func (this *TestFrameworkContext) GetDefaultAccount() (*sdk.Account, error) {
-	return this.Wallet.GetDefaultAccount([]byte(common.DefConfig.Password))
 }
 
 func (this *TestFrameworkContext) NewAccount() *sdk.Account {

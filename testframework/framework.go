@@ -47,12 +47,6 @@ type TestFramework struct {
 	testCaseRes map[string]bool
 	//OntologySdk object
 	ont *sdk.OntologySdk
-	//OntWallet object
-	wallet *sdk.Wallet
-	//Callback func before running test
-	before func(ctx *TestFrameworkContext)
-	//Callback func After running test
-	after func(ctx *TestFrameworkContext)
 }
 
 //NewTestFramework return a TestFramework instance
@@ -100,7 +94,7 @@ func (this *TestFramework) runTestList(testCaseList []TestCase) {
 	this.onTestStart()
 	defer this.onTestFinish(testCaseList)
 	failNowCh := make(chan interface{}, 10)
-	ctx := NewTestFrameworkContext(this.ont, this.wallet, failNowCh)
+	ctx := NewTestFrameworkContext(this.ont, failNowCh)
 	for i, testCase := range testCaseList {
 		select {
 		case <-failNowCh:
@@ -123,11 +117,6 @@ func (this *TestFramework) runTest(index int, ctx *TestFrameworkContext, testCas
 //SetOntSdk ontology sdk instance to test framework
 func (this *TestFramework) SetOntSdk(ont *sdk.OntologySdk) {
 	this.ont = ont
-}
-
-//SetWallet wallet instance to test framework
-func (this *TestFramework) SetWallet(wallet *sdk.Wallet) {
-	this.wallet = wallet
 }
 
 //onTestStart invoke at the beginning of test

@@ -31,7 +31,7 @@ func registerCandidate(ctx *testframework.TestFrameworkContext, user *sdk.Accoun
 	}
 	method := "registerCandidate"
 	contractAddress := utils.GovernanceContractAddress
-	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, OntIDVersion,
+	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, user, OntIDVersion,
 		contractAddress, method, []interface{}{params})
 	if err != nil {
 		ctx.LogError("invokeNativeContract error :", err)
@@ -86,7 +86,7 @@ func unRegisterCandidate(ctx *testframework.TestFrameworkContext, user *sdk.Acco
 	}
 	method := "unRegisterCandidate"
 	contractAddress := utils.GovernanceContractAddress
-	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, OntIDVersion,
+	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, user, OntIDVersion,
 		contractAddress, method, []interface{}{params})
 	if err != nil {
 		ctx.LogError("invokeNativeContract error :", err)
@@ -102,7 +102,7 @@ func approveCandidate(ctx *testframework.TestFrameworkContext, user *sdk.Account
 	}
 	contractAddress := utils.GovernanceContractAddress
 	method := "approveCandidate"
-	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, OntIDVersion,
+	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, user, OntIDVersion,
 		contractAddress, method, []interface{}{params})
 	if err != nil {
 		ctx.LogError("invokeNativeContract error :", err)
@@ -134,7 +134,7 @@ func rejectCandidate(ctx *testframework.TestFrameworkContext, user *sdk.Account,
 	}
 	contractAddress := utils.GovernanceContractAddress
 	method := "rejectCandidate"
-	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, OntIDVersion,
+	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, user, OntIDVersion,
 		contractAddress, method, []interface{}{params})
 	if err != nil {
 		ctx.LogError("invokeNativeContract error :", err)
@@ -168,7 +168,7 @@ func changeMaxAuthorization(ctx *testframework.TestFrameworkContext, user *sdk.A
 	}
 	contractAddress := utils.GovernanceContractAddress
 	method := "changeMaxAuthorization"
-	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, OntIDVersion,
+	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, user, OntIDVersion,
 		contractAddress, method, []interface{}{params})
 	if err != nil {
 		ctx.LogError("invokeNativeContract error :", err)
@@ -186,7 +186,7 @@ func setPeerCost(ctx *testframework.TestFrameworkContext, user *sdk.Account, pee
 	}
 	contractAddress := utils.GovernanceContractAddress
 	method := "setPeerCost"
-	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, OntIDVersion,
+	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, user, OntIDVersion,
 		contractAddress, method, []interface{}{params})
 	if err != nil {
 		ctx.LogError("invokeNativeContract error :", err)
@@ -204,7 +204,7 @@ func addInitPos(ctx *testframework.TestFrameworkContext, user *sdk.Account, peer
 	}
 	contractAddress := utils.GovernanceContractAddress
 	method := "addInitPos"
-	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, OntIDVersion,
+	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, user, OntIDVersion,
 		contractAddress, method, []interface{}{params})
 	if err != nil {
 		ctx.LogError("invokeNativeContract error :", err)
@@ -222,7 +222,7 @@ func reduceInitPos(ctx *testframework.TestFrameworkContext, user *sdk.Account, p
 	}
 	contractAddress := utils.GovernanceContractAddress
 	method := "reduceInitPos"
-	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, OntIDVersion,
+	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, user, OntIDVersion,
 		contractAddress, method, []interface{}{params})
 	if err != nil {
 		ctx.LogError("invokeNativeContract error :", err)
@@ -240,7 +240,7 @@ func authorizeForPeer(ctx *testframework.TestFrameworkContext, user *sdk.Account
 	}
 	contractAddress := utils.GovernanceContractAddress
 	method := "authorizeForPeer"
-	_, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, OntIDVersion,
+	_, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, user, OntIDVersion,
 		contractAddress, method, []interface{}{params})
 	if err != nil {
 		ctx.LogError("invokeNativeContract error :", err)
@@ -258,7 +258,7 @@ func unAuthorizeForPeer(ctx *testframework.TestFrameworkContext, user *sdk.Accou
 	}
 	contractAddress := utils.GovernanceContractAddress
 	method := "unAuthorizeForPeer"
-	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, OntIDVersion,
+	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, user, OntIDVersion,
 		contractAddress, method, []interface{}{params})
 	if err != nil {
 		ctx.LogError("invokeNativeContract error :", err)
@@ -276,7 +276,7 @@ func withdraw(ctx *testframework.TestFrameworkContext, user *sdk.Account, peerPu
 	}
 	contractAddress := utils.GovernanceContractAddress
 	method := "withdraw"
-	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, OntIDVersion,
+	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, user, OntIDVersion,
 		contractAddress, method, []interface{}{params})
 	if err != nil {
 		ctx.LogError("invokeNativeContract error :", err)
@@ -292,7 +292,7 @@ func withdrawOng(ctx *testframework.TestFrameworkContext, user *sdk.Account) boo
 	}
 	contractAddress := utils.GovernanceContractAddress
 	method := "withdrawOng"
-	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, OntIDVersion,
+	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, user, OntIDVersion,
 		contractAddress, method, []interface{}{params})
 	if err != nil {
 		ctx.LogError("invokeNativeContract error :", err)
@@ -309,7 +309,7 @@ func commitDpos(ctx *testframework.TestFrameworkContext, user *sdk.Account) bool
 	params := &commitDposParam{}
 	contractAddress := utils.GovernanceContractAddress
 	method := "commitDpos"
-	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, OntIDVersion,
+	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, user, OntIDVersion,
 		contractAddress, method, []interface{}{params})
 	if err != nil {
 		ctx.LogError("invokeNativeContract error :", err)
@@ -339,7 +339,7 @@ func quitNode(ctx *testframework.TestFrameworkContext, user *sdk.Account, peerPu
 	}
 	contractAddress := utils.GovernanceContractAddress
 	method := "quitNode"
-	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, OntIDVersion,
+	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, user, OntIDVersion,
 		contractAddress, method, []interface{}{params})
 	if err != nil {
 		ctx.LogError("invokeNativeContract error :", err)
@@ -355,7 +355,7 @@ func blackNode(ctx *testframework.TestFrameworkContext, user *sdk.Account, peerP
 	}
 	contractAddress := utils.GovernanceContractAddress
 	method := "blackNode"
-	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, OntIDVersion,
+	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, user, OntIDVersion,
 		contractAddress, method, []interface{}{params})
 	if err != nil {
 		ctx.LogError("invokeNativeContract error :", err)
@@ -387,7 +387,7 @@ func whiteNode(ctx *testframework.TestFrameworkContext, user *sdk.Account, peerP
 	}
 	contractAddress := utils.GovernanceContractAddress
 	method := "whiteNode"
-	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, OntIDVersion,
+	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, user, OntIDVersion,
 		contractAddress, method, []interface{}{params})
 	if err != nil {
 		ctx.LogError("invokeNativeContract error :", err)
@@ -416,7 +416,7 @@ func whiteNodeMultiSign(ctx *testframework.TestFrameworkContext, pubKeys []keypa
 func updateConfig(ctx *testframework.TestFrameworkContext, user *sdk.Account, config *governance.Configuration) bool {
 	contractAddress := utils.GovernanceContractAddress
 	method := "updateConfig"
-	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, OntIDVersion,
+	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, user, OntIDVersion,
 		contractAddress, method, []interface{}{config})
 	if err != nil {
 		ctx.LogError("invokeNativeContract error :", err)
@@ -442,7 +442,7 @@ func updateConfigMultiSign(ctx *testframework.TestFrameworkContext, pubKeys []ke
 func updateGlobalParam(ctx *testframework.TestFrameworkContext, user *sdk.Account, globalParam *governance.GlobalParam) bool {
 	contractAddress := utils.GovernanceContractAddress
 	method := "updateGlobalParam"
-	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, OntIDVersion,
+	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, user, OntIDVersion,
 		contractAddress, method, []interface{}{globalParam})
 	if err != nil {
 		ctx.LogError("invokeNativeContract error :", err)
@@ -468,7 +468,7 @@ func updateGlobalParamMultiSign(ctx *testframework.TestFrameworkContext, pubKeys
 func updateGlobalParam2(ctx *testframework.TestFrameworkContext, user *sdk.Account, globalParam2 *governance.GlobalParam2) bool {
 	contractAddress := utils.GovernanceContractAddress
 	method := "updateGlobalParam2"
-	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, OntIDVersion,
+	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, user, OntIDVersion,
 		contractAddress, method, []interface{}{globalParam2})
 	if err != nil {
 		ctx.LogError("invokeNativeContract error :", err)
@@ -494,7 +494,7 @@ func updateGlobalParam2MultiSign(ctx *testframework.TestFrameworkContext, pubKey
 func updateSplitCurve(ctx *testframework.TestFrameworkContext, user *sdk.Account, splitCurve *governance.SplitCurve) bool {
 	contractAddress := utils.GovernanceContractAddress
 	method := "updateSplitCurve"
-	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, OntIDVersion,
+	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, user, OntIDVersion,
 		contractAddress, method, []interface{}{splitCurve})
 	if err != nil {
 		ctx.LogError("invokeNativeContract error :", err)
@@ -520,7 +520,7 @@ func updateSplitCurveMultiSign(ctx *testframework.TestFrameworkContext, pubKeys 
 func setPromisePos(ctx *testframework.TestFrameworkContext, user *sdk.Account, promisePos *governance.PromisePos) bool {
 	contractAddress := utils.GovernanceContractAddress
 	method := "setPromisePos"
-	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, OntIDVersion,
+	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, user, OntIDVersion,
 		contractAddress, method, []interface{}{promisePos})
 	if err != nil {
 		ctx.LogError("invokeNativeContract error :", err)
@@ -571,7 +571,7 @@ func transferPenalty(ctx *testframework.TestFrameworkContext, user *sdk.Account,
 	}
 	contractAddress := utils.GovernanceContractAddress
 	method := "transferPenalty"
-	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, OntIDVersion,
+	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, user, OntIDVersion,
 		contractAddress, method, []interface{}{params})
 	if err != nil {
 		ctx.LogError("invokeNativeContract error :", err)
@@ -587,7 +587,7 @@ func withdrawFee(ctx *testframework.TestFrameworkContext, user *sdk.Account) boo
 	}
 	contractAddress := utils.GovernanceContractAddress
 	method := "withdrawFee"
-	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, OntIDVersion,
+	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, user, OntIDVersion,
 		contractAddress, method, []interface{}{params})
 	if err != nil {
 		ctx.LogError("invokeNativeContract error :", err)
@@ -817,7 +817,7 @@ func assignFuncsToRole(ctx *testframework.TestFrameworkContext, user *sdk.Accoun
 	}
 	method := "assignFuncsToRole"
 	contractAddress := utils.AuthContractAddress
-	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, OntIDVersion,
+	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, user, OntIDVersion,
 		contractAddress, method, []interface{}{params})
 	if err != nil {
 		ctx.LogError("invokeNativeContract error :", err)
@@ -840,7 +840,7 @@ func assignOntIDsToRole(ctx *testframework.TestFrameworkContext, user *sdk.Accou
 	}
 	contractAddress := utils.AuthContractAddress
 	method := "assignOntIDsToRole"
-	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, OntIDVersion,
+	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, user, OntIDVersion,
 		contractAddress, method, []interface{}{params})
 	if err != nil {
 		ctx.LogError("invokeNativeContract error :", err)
@@ -862,7 +862,7 @@ func regIdWithPublicKey(ctx *testframework.TestFrameworkContext, user *sdk.Accou
 	}
 	method := "regIDWithPublicKey"
 	contractAddress := utils.OntIDContractAddress
-	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, OntIDVersion,
+	txHash, err := ctx.Ont.Native.InvokeNativeContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, user, OntIDVersion,
 		contractAddress, method, []interface{}{params})
 	if err != nil {
 		ctx.LogError("invokeNativeContract error :", err)

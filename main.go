@@ -57,17 +57,11 @@ func main() {
 
 	ontSdk := sdk.NewOntologySdk()
 	ontSdk.NewRpcClient().SetAddress(common.DefConfig.JsonRpcAddress)
-	wallet, err := ontSdk.OpenWallet(common.DefConfig.WalletFile)
-	if err != nil {
-		log4.Error("OpenOrCreateWallet %s error:%s", common.DefConfig.WalletFile, err)
-		return
-	}
 	testCases := make([]string, 0)
 	if TestCases != "" {
 		testCases = strings.Split(TestCases, ",")
 	}
 	testframework.TFramework.SetOntSdk(ontSdk)
-	testframework.TFramework.SetWallet(wallet)
 	//Start run test case
 	testframework.TFramework.Start(testCases)
 }

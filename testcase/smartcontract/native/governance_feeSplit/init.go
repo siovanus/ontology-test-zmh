@@ -22,51 +22,6 @@ import (
 	"github.com/ontio/ontology-tool/testframework"
 )
 
-func TestGovernanceContract() {
-	testframework.TFramework.RegTestCase("SimulateAuthorizeForPeerAndWithdraw", SimulateAuthorizeForPeerAndWithdraw)
-	testframework.TFramework.RegTestCase("SimulateRejectCandidate", SimulateRejectCandidate)
-	testframework.TFramework.RegTestCase("SimulateUnConsensusToConsensus", SimulateUnConsensusToConsensus)
-	testframework.TFramework.RegTestCase("SimulateUnConsensusToUnConsensus", SimulateUnConsensusToUnConsensus)
-	testframework.TFramework.RegTestCase("SimulateConsensusToUnConsensus", SimulateConsensusToUnConsensus)
-	testframework.TFramework.RegTestCase("SimulateConsensusToConsensus", SimulateConsensusToConsensus)
-	testframework.TFramework.RegTestCase("SimulateQuitUnConsensus", SimulateQuitUnConsensus)
-	testframework.TFramework.RegTestCase("SimulateQuitConsensus", SimulateQuitConsensus)
-	testframework.TFramework.RegTestCase("SimulateBlackConsensusAndWhite", SimulateBlackConsensusAndWhite)
-	testframework.TFramework.RegTestCase("SimulateBlackUnConsensusAndWhite", SimulateBlackUnConsensusAndWhite)
-	testframework.TFramework.RegTestCase("SimulateUpdateConfig", SimulateUpdateConfig)
-	testframework.TFramework.RegTestCase("SimulateUpdateGlobalParam", SimulateUpdateGlobalParam)
-	testframework.TFramework.RegTestCase("SimulateUpdateGlobalParam2", SimulateUpdateGlobalParam2)
-	testframework.TFramework.RegTestCase("SimulateUpdateSplitCurve", SimulateUpdateSplitCurve)
-	testframework.TFramework.RegTestCase("SimulateCommitDPosAuth", SimulateCommitDPosAuth)
-	testframework.TFramework.RegTestCase("SimulateTransferPenalty", SimulateTransferPenalty)
-	testframework.TFramework.RegTestCase("SimulateOntIDAndAuth", SimulateOntIDAndAuth)
-	testframework.TFramework.RegTestCase("SimulateUnRegisterCandidate", SimulateUnRegisterCandidate)
-	testframework.TFramework.RegTestCase("SimulateFeeSplit", SimulateFeeSplit)
-	testframework.TFramework.RegTestCase("SimulateFeeSplit2", SimulateFeeSplit2)
-	testframework.TFramework.RegTestCase("SimulateChangeInitPos", SimulateChangeInitPos)
-	testframework.TFramework.RegTestCase("SimulatePromisePos", SimulatePromisePos)
-	testframework.TFramework.RegTestCase("SimulateSetPeerCost", SimulateSetPeerCost)
-	testframework.TFramework.RegTestCase("SimulateAddConsensusPeer", SimulateAddConsensusPeer)
-}
-
-func TestGovernanceContractError() {
-	testframework.TFramework.RegTestCase("SimulateUnConsensusAuthorizeForPeerError", SimulateUnConsensusAuthorizeForPeerError)
-	testframework.TFramework.RegTestCase("SimulateConsensusAuthorizeForPeerError", SimulateConsensusAuthorizeForPeerError)
-	testframework.TFramework.RegTestCase("SimulateWithDrawError", SimulateWithDrawError)
-	testframework.TFramework.RegTestCase("SimulateRegisterCandidateError", SimulateRegisterCandidateError)
-	testframework.TFramework.RegTestCase("SimulateRejectCandidateError", SimulateRejectCandidateError)
-	testframework.TFramework.RegTestCase("SimulateApproveCandidateError", SimulateApproveCandidateError)
-	testframework.TFramework.RegTestCase("SimulateBlackNodeError", SimulateBlackNodeError)
-	testframework.TFramework.RegTestCase("SimulateWhiteNodeError", SimulateWhiteNodeError)
-	testframework.TFramework.RegTestCase("SimulateQuitNodeError", SimulateQuitNodeError)
-	testframework.TFramework.RegTestCase("SimulateUpdateConfigError", SimulateUpdateConfigError)
-	testframework.TFramework.RegTestCase("SimulateUpdateGlobalParamError", SimulateUpdateGlobalParamError)
-	testframework.TFramework.RegTestCase("SimulateUpdateGlobalParam2Error", SimulateUpdateGlobalParam2Error)
-	testframework.TFramework.RegTestCase("SimulateTransferPenaltyError", SimulateTransferPenaltyError)
-	testframework.TFramework.RegTestCase("SimulateUnRegisterCandidateError", SimulateUnRegisterCandidateError)
-	testframework.TFramework.RegTestCase("SimulateChangeMaxAuthorizationError", SimulateChangeMaxAuthorizationError)
-}
-
 func TestGovernanceMethods() {
 	testframework.TFramework.RegTestCase("RegIdWithPublicKey", RegIdWithPublicKey)
 	testframework.TFramework.RegTestCase("AssignFuncsToRole", AssignFuncsToRole)
@@ -128,8 +83,4 @@ func TestGovernanceMethods() {
 	testframework.TFramework.RegTestCase("TransferOngMultiSignToMultiSign", TransferOngMultiSignToMultiSign)
 	testframework.TFramework.RegTestCase("TransferFromOngMultiSignToMultiSign", TransferFromOngMultiSignToMultiSign)
 	testframework.TFramework.RegTestCase("GetVbftInfo", GetVbftInfo)
-}
-
-func TestGovernanceBatch() {
-	testframework.TFramework.RegTestCase("AuthorizeForPeerBatch", AuthorizeForPeerBatch)
 }

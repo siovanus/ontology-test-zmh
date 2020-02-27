@@ -553,44 +553,13 @@ func AuthorizeForPeer(ctx *testframework.TestFrameworkContext) bool {
 		ctx.LogError("json.Unmarshal failed %v", err)
 		return false
 	}
-	user, ok := getAccount(ctx, authorizeForPeerParam.Path)
+	user, ok := getAccountByPassword(ctx, authorizeForPeerParam.Path)
 	if !ok {
 		return false
 	}
 	ok = authorizeForPeer(ctx, user, authorizeForPeerParam.PeerPubkeyList, authorizeForPeerParam.PosList)
 	if !ok {
 		return false
-	}
-	waitForBlock(ctx)
-	return true
-}
-
-type AuthorizeForPeerBatchParam struct {
-	PeerPubkey string
-	Pos        uint32
-}
-
-func AuthorizeForPeerBatch(ctx *testframework.TestFrameworkContext) bool {
-	data, err := ioutil.ReadFile("./params/AuthorizeForPeerBatch.json")
-	if err != nil {
-		ctx.LogError("ioutil.ReadFile failed %v", err)
-		return false
-	}
-	authorizeForPeerBatchParam := new(AuthorizeForPeerBatchParam)
-	err = json.Unmarshal(data, authorizeForPeerBatchParam)
-	if err != nil {
-		ctx.LogError("json.Unmarshal failed %v", err)
-		return false
-	}
-	loop := 200000
-	peerPubkeyList := []string{authorizeForPeerBatchParam.PeerPubkey}
-	posList := []uint32{authorizeForPeerBatchParam.Pos}
-	for i := 0; i < loop; i++ {
-		user := ctx.NewAccount()
-		ok := authorizeForPeer(ctx, user, peerPubkeyList, posList)
-		if !ok {
-			return false
-		}
 	}
 	waitForBlock(ctx)
 	return true
@@ -608,7 +577,7 @@ func UnAuthorizeForPeer(ctx *testframework.TestFrameworkContext) bool {
 		ctx.LogError("json.Unmarshal failed %v", err)
 		return false
 	}
-	user, ok := getAccount(ctx, authorizeForPeerParam.Path)
+	user, ok := getAccountByPassword(ctx, authorizeForPeerParam.Path)
 	if !ok {
 		return false
 	}
@@ -1085,7 +1054,7 @@ func TransferPenalty(ctx *testframework.TestFrameworkContext) bool {
 		users = append(users, user)
 		pubKeys = append(pubKeys, user.PublicKey)
 	}
-	user1, ok := getAccount(ctx, transferPenaltyParam.Path2)
+	user1, ok := getAccountByPassword(ctx, transferPenaltyParam.Path2)
 	if !ok {
 		return false
 	}
@@ -1294,7 +1263,7 @@ func GetTotalStake(ctx *testframework.TestFrameworkContext) bool {
 		ctx.LogError("json.Unmarshal failed %v", err)
 		return false
 	}
-	user, ok := getAccount(ctx, getTotalStakeParam.Path)
+	user, ok := getAccountByPassword(ctx, getTotalStakeParam.Path)
 	if !ok {
 		return false
 	}
@@ -1386,7 +1355,7 @@ func WithdrawOng(ctx *testframework.TestFrameworkContext) bool {
 		ctx.LogError("json.Unmarshal failed %v", err)
 		return false
 	}
-	user, ok := getAccount(ctx, withdrawOngParam.Path)
+	user, ok := getAccountByPassword(ctx, withdrawOngParam.Path)
 	if !ok {
 		return false
 	}
@@ -1419,7 +1388,7 @@ func Vrf(ctx *testframework.TestFrameworkContext) bool {
 		ctx.LogError("json.Unmarshal failed %v", err)
 		return false
 	}
-	user, ok := getAccount(ctx, vrfParam.Path)
+	user, ok := getAccountByPassword(ctx, vrfParam.Path)
 	if !ok {
 		return false
 	}
