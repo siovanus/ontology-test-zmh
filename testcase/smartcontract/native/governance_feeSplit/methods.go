@@ -859,7 +859,7 @@ func getVbftConfig(ctx *testframework.TestFrameworkContext) (*governance.Configu
 	if err != nil {
 		return nil, errors.NewDetailErr(err, errors.ErrNoCode, "getStorage error")
 	}
-	if err := config.Deserialize(bytes.NewBuffer(value)); err != nil {
+	if err := config.Deserialization(common.NewZeroCopySource(value)); err != nil {
 		return nil, errors.NewDetailErr(err, errors.ErrNoCode, "deserialize, deserialize config error!")
 	}
 	return config, nil
@@ -873,7 +873,7 @@ func getPreConfig(ctx *testframework.TestFrameworkContext) (*governance.PreConfi
 	if err != nil {
 		return nil, errors.NewDetailErr(err, errors.ErrNoCode, "getStorage error")
 	}
-	if err := preConfig.Deserialize(bytes.NewBuffer(value)); err != nil {
+	if err := preConfig.Deserialization(common.NewZeroCopySource(value)); err != nil {
 		return nil, errors.NewDetailErr(err, errors.ErrNoCode, "deserialize, deserialize preConfig error!")
 	}
 	return preConfig, nil
@@ -887,7 +887,7 @@ func getGlobalParam(ctx *testframework.TestFrameworkContext) (*governance.Global
 	if err != nil {
 		return nil, errors.NewDetailErr(err, errors.ErrNoCode, "getStorage error")
 	}
-	if err := globalParam.Deserialize(bytes.NewBuffer(value)); err != nil {
+	if err := globalParam.Deserialization(common.NewZeroCopySource(value)); err != nil {
 		return nil, errors.NewDetailErr(err, errors.ErrNoCode, "deserialize, deserialize globalParam error!")
 	}
 	return globalParam, nil
@@ -902,7 +902,7 @@ func getGlobalParam2(ctx *testframework.TestFrameworkContext) (*governance.Globa
 		return nil, errors.NewDetailErr(err, errors.ErrNoCode, "getStorage error")
 	}
 	if len(value) != 0 {
-		if err := globalParam2.Deserialize(bytes.NewBuffer(value)); err != nil {
+		if err := globalParam2.Deserialization(common.NewZeroCopySource(value)); err != nil {
 			return nil, errors.NewDetailErr(err, errors.ErrNoCode, "deserialize, deserialize globalParam2 error!")
 		}
 	}
@@ -917,7 +917,7 @@ func getSplitCurve(ctx *testframework.TestFrameworkContext) (*governance.SplitCu
 	if err != nil {
 		return nil, errors.NewDetailErr(err, errors.ErrNoCode, "getStorage error")
 	}
-	if err := splitCurve.Deserialize(bytes.NewBuffer(value)); err != nil {
+	if err := splitCurve.Deserialization(common.NewZeroCopySource(value)); err != nil {
 		return nil, errors.NewDetailErr(err, errors.ErrNoCode, "deserialize, deserialize splitCurve error!")
 	}
 	return splitCurve, nil
@@ -963,7 +963,7 @@ func getPeerPoolMap(ctx *testframework.TestFrameworkContext) (*governance.PeerPo
 	if err != nil {
 		return nil, errors.NewDetailErr(err, errors.ErrNoCode, "getStorage error")
 	}
-	if err := peerPoolMap.Deserialize(bytes.NewBuffer(value)); err != nil {
+	if err := peerPoolMap.Deserialization(common.NewZeroCopySource(value)); err != nil {
 		return nil, errors.NewDetailErr(err, errors.ErrNoCode, "deserialize, deserialize peerPoolMap error!")
 	}
 	return peerPoolMap, nil
@@ -981,7 +981,7 @@ func getAuthorizeInfo(ctx *testframework.TestFrameworkContext, peerPubkey string
 	if err != nil {
 		return nil, errors.NewDetailErr(err, errors.ErrNoCode, "getStorage error")
 	}
-	if err := authorizeInfo.Deserialize(bytes.NewBuffer(value)); err != nil {
+	if err := authorizeInfo.Deserialization(common.NewZeroCopySource(value)); err != nil {
 		return nil, errors.NewDetailErr(err, errors.ErrNoCode, "deserialize, deserialize authorizeInfo error!")
 	}
 	return authorizeInfo, nil
@@ -1012,7 +1012,7 @@ func getTotalStake(ctx *testframework.TestFrameworkContext, address common.Addre
 	if err != nil {
 		return nil, errors.NewDetailErr(err, errors.ErrNoCode, "getStorage error")
 	}
-	if err := totalStake.Deserialize(bytes.NewBuffer(value)); err != nil {
+	if err := totalStake.Deserialization(common.NewZeroCopySource(value)); err != nil {
 		return nil, errors.NewDetailErr(err, errors.ErrNoCode, "deserialize, deserialize totalStake error!")
 	}
 	return totalStake, nil
@@ -1030,7 +1030,7 @@ func getPenaltyStake(ctx *testframework.TestFrameworkContext, peerPubkey string)
 	if err != nil {
 		return nil, errors.NewDetailErr(err, errors.ErrNoCode, "getStorage error")
 	}
-	if err := penaltyStake.Deserialize(bytes.NewBuffer(value)); err != nil {
+	if err := penaltyStake.Deserialization(common.NewZeroCopySource(value)); err != nil {
 		return nil, errors.NewDetailErr(err, errors.ErrNoCode, "deserialize, deserialize penaltyStake error!")
 	}
 	return penaltyStake, nil
@@ -1049,7 +1049,7 @@ func getAttributes(ctx *testframework.TestFrameworkContext, peerPubkey string) (
 		return nil, errors.NewDetailErr(err, errors.ErrNoCode, "getStorage error")
 	}
 	if len(value) != 0 {
-		if err := peerAttributes.Deserialize(bytes.NewBuffer(value)); err != nil {
+		if err := peerAttributes.Deserialization(common.NewZeroCopySource(value)); err != nil {
 			return nil, errors.NewDetailErr(err, errors.ErrNoCode, "deserialize, deserialize peerAttributes error!")
 		}
 	}
@@ -1064,7 +1064,7 @@ func getSplitFeeAddress(ctx *testframework.TestFrameworkContext, address common.
 	if err != nil {
 		return nil, errors.NewDetailErr(err, errors.ErrNoCode, "getStorage error")
 	}
-	if err := splitFeeAddress.Deserialize(bytes.NewBuffer(value)); err != nil {
+	if err := splitFeeAddress.Deserialization(common.NewZeroCopySource(value)); err != nil {
 		return nil, errors.NewDetailErr(err, errors.ErrNoCode, "deserialize, deserialize splitFeeAddress error!")
 	}
 	return splitFeeAddress, nil
@@ -1096,7 +1096,7 @@ func getPromisePos(ctx *testframework.TestFrameworkContext, peerPubkey string) (
 		return nil, errors.NewDetailErr(err, errors.ErrNoCode, "getStorage error")
 	}
 	promisePos := new(governance.PromisePos)
-	if err := promisePos.Deserialize(bytes.NewBuffer(value)); err != nil {
+	if err := promisePos.Deserialization(common.NewZeroCopySource(value)); err != nil {
 		return nil, errors.NewDetailErr(err, errors.ErrNoCode, "deserialize, deserialize promisePos error!")
 	}
 	return promisePos, nil
