@@ -83,4 +83,6 @@ func TestGovernanceMethods() {
 	testframework.TFramework.RegTestCase("TransferOngMultiSignToMultiSign", TransferOngMultiSignToMultiSign)
 	testframework.TFramework.RegTestCase("TransferFromOngMultiSignToMultiSign", TransferFromOngMultiSignToMultiSign)
 	testframework.TFramework.RegTestCase("GetVbftInfo", GetVbftInfo)
+
+	testframework.TFramework.RegTestCase("InvokeOracle", InvokeOracle)
 }

@@ -565,6 +565,44 @@ func AuthorizeForPeer(ctx *testframework.TestFrameworkContext) bool {
 	return true
 }
 
+type InvokeOracleParam struct {
+	Path  string
+	JobID string
+}
+
+func InvokeOracle(ctx *testframework.TestFrameworkContext) bool {
+	contractCodeAddress, _ := common.AddressFromHexString("dbaa46e1b9880945e538a37cd9aca246af0ce660")
+	oracleAddress, _ := hex.DecodeString("b54dd842fadc8b04f0c58b1ea921f49bf54d04f0")
+
+	data, err := ioutil.ReadFile("./params/InvokeOracle.json")
+	if err != nil {
+		ctx.LogError("ioutil.ReadFile failed %v", err)
+		return false
+	}
+	invokeOracleParam := new(InvokeOracleParam)
+	err = json.Unmarshal(data, invokeOracleParam)
+	if err != nil {
+		ctx.LogError("json.Unmarshal failed %v", err)
+		return false
+	}
+
+	user, ok := getAccountByPassword(ctx, invokeOracleParam.Path)
+	if !ok {
+		return false
+	}
+	jobID, _ := hex.DecodeString(invokeOracleParam.JobID)
+	params := []interface{}{"requestEthereumPrice", []interface{}{oracleAddress[:], jobID, 1000000000000000000}}
+	txHash, err := ctx.Ont.NeoVM.InvokeNeoVMContract(ctx.GetGasPrice(), ctx.GetGasLimit(), user, user,
+		contractCodeAddress, params)
+	if err != nil {
+		ctx.LogError("TestInvokeSmartContract InvokeNeoVMSmartContract error:%s", err)
+		return false
+	}
+	ctx.LogInfo("InvokeOracle txHash is: %s", txHash.ToHexString())
+	waitForBlock(ctx)
+	return true
+}
+
 func UnAuthorizeForPeer(ctx *testframework.TestFrameworkContext) bool {
 	data, err := ioutil.ReadFile("./params/UnAuthorizeForPeer.json")
 	if err != nil {

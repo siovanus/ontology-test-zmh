@@ -1,5 +1,5 @@
 {
-  "JsonRpcAddress":"http://localhost:20336",
-  "GasPrice":0,
-  "GasLimit":20000
+  "JsonRpcAddress":"http://polaris1.ont.io:20336",
+  "GasPrice":500,
+  "GasLimit":2000000
 }
